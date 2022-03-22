@@ -1,8 +1,13 @@
+import Navbar from "./Components/Navbar";
+import Card from "./Components/Card";
+
+
 
 function App() {
   return (
     <>
-      Hello World
+      <Navbar />
+      <Card />
     </>
   );
 }
