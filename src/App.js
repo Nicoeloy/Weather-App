@@ -19,18 +19,28 @@ function App() {
   // eslint-disable-next-line
   }, [query]);
 
+  function setError(error) {
+    console.log(error);
+  }
 
-
-  const getWeather = async () => {
-    const response = await fetch(
-      // `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
-      `https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=${API_KEY}`
-    );
-    const data = await response.json();
-    setWeather(data.coord)
-    console.log(data.coord);
-    // return data;
+  const getWeather = async (cityName, lat, lon) => {
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+      );
+      const data = await response.json();
+      setWeather(displayWeather(cityName, data));
+    } catch (err) {
+      setError(err);
+    }
   };
+
+  function displayWeather(cityName, data) {
+    const weather = data.weather[0];
+    return (
+      cityName={cityName}
+    )
+  }
 
   // getWeather().then(data => console.log(data));
 
